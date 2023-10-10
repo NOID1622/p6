@@ -1,0 +1,7 @@
+SELECT posts.Judul,COUNT(comments.CommentID) AS 'Total Comment' from posts left join comments on posts.PostID = comments.PostID GROUP BY posts.PostID DESC;
+
+SELECT users.Nama AS 'Sang posting', GROUP_CONCAT(CONCAT(posts.Judul, ' post judul') ORDER BY posts.TanggalPosting DESC) AS 'Semua Postingan', MAX(posts.TanggalPosting) AS 'TanggalPosting' from users JOIN posts on users.UserID = posts.UserID GROUP BY users.nama ORDER BY MAX(posts.TanggalPosting) DESC;
+
+SELECT users.Nama as 'Nama user', COUNT(posts.PostID) AS 'Jumlah Postingan' FROM users LEFT JOIN posts ON users.UserID = posts.UserID WHERE users.UserID != 3 GROUP BY users.UserID ORDER BY users.Nama ASC;
+
+SELECT users.Nama AS 'Nama', COUNT(comments.CommentID) AS 'jumlah_Komentar' FROM users LEFT JOIN comments ON users.UserID = comments.UserID GROUP BY users.UserID HAVING COUNT(comments.CommentID) < 3 ORDER BY comments.CommentID DESC;
